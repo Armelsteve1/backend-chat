@@ -48,7 +48,7 @@ Before starting, ensure you have the following tools installed:
 
 ### **1️⃣ Clone the repository**
 ```bash
-git clone https://github.com/<your-username>/BackendChat.git
+git clone https://github.com/Armelsteve1/backend-chat.git
 cd BackendChat
 ```
 
@@ -60,7 +60,7 @@ cd BackendChat
   POSTGRES_DB=backendchat_local_db
 
   MONGODB_URI=mongodb://localhost:27017/backendchat_chat
-  JWT_SECRET=local_secret_key
+  JWT_SECRET=..............
   PORT=3000
   ```
 
