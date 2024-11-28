@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  backendchat:
+    build: .
+    container_name: backendchat
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    depends_on:
+      - postgres
+      - mongodb
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init_postgres.sql:/docker-entrypoint-initdb.d/init_postgres.sql
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./init_mongodb.js:/docker-entrypoint-initdb.d/init_mongodb.js
+
+volumes:
+  postgres_data:
+  mongo_data:
